@@ -16,3 +16,21 @@ O TODO app deve ter as seguintes funcionalidades:
 ### Versão 3: Persistência numa API em Memória
 
 - **Descrição**: Uma API será usada para armazenar os dados em memória. No entanto, os dados serão perdidos quando a API for reiniciada.
+
+## Como utilizar
+
+- **Instale as dependencias**:
+```
+npm install
+```
+
+- **Execute o Back**:
+```
+node app.js
+```
+
+- **Inicie o frontend**:
+```
+npm start
+```
+
