@@ -16,3 +16,10 @@ O TODO app deve ter as seguintes funcionalidades:
 ### Versão 1: Sem Persistência de Dados
 
 - **Descrição**: Nesta versão, os dados são armazenados apenas na memória. Ao atualizar a página, todos os dados serão perdidos.
+
+## Como utilizar
+
+- **Inicie o frontend**:
+```
+npm start
+```
