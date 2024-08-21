@@ -4,25 +4,35 @@ import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 
 const App = () => {
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
-  const addTodo = (title) => {
-    const newTodo = {
-      id: todos.length + 1,
-      title,
-      completed: false,
+    // Fetch todos from the server when the component mounts
+    const fetchTodos = async () => {
+      const response = await fetch("http://localhost:9000/api/todos");
+      const data = await response.json();
+      setTodos(data);
     };
+    fetchTodos();
+  }, []);
+
+  const addTodo = async (title) => {
+    const response = await fetch("http://localhost:9000/api/todos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title }),
+    });
+
+    const newTodo = await response.json();
     setTodos([...todos, newTodo]);
   };
 
-  const completeTodo = (id) => {
+  const completeTodo = async (id) => {
+    await fetch(`http://localhost:9000/api/todos/${id}`, {
+      method: "PUT",
+    });
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -30,14 +40,15 @@ const App = () => {
     );
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = async (id) => {
+    await fetch(`http://localhost:9000/api/todos/${id}`, {
+      method: "DELETE",
+    });
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
     <div className="App">
-      <title>TODO App</title>
-
       <h1>TODO App</h1>
       <TodoForm onAdd={addTodo} />
       <TodoList todos={todos} onComplete={completeTodo} onDelete={deleteTodo} />

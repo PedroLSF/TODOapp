@@ -11,8 +11,8 @@ O TODO app deve ter as seguintes funcionalidades:
 - **Marcar como concluído**: Permitir que um TODO seja marcado como concluído.
 - **Deletar TODO**: Remover um TODO da lista.
 
-## Branch da Versão
+## Branch da versão
 
-### Versão 2: Persistência no Navegador (Local Storage)
+### Versão 3: Persistência numa API em Memória
 
-- **Descrição**: Os dados serão armazenados no Local Storage do navegador, permitindo que eles sejam mantidos mesmo após a página ser atualizada.
+- **Descrição**: Uma API será usada para armazenar os dados em memória. No entanto, os dados serão perdidos quando a API for reiniciada.
