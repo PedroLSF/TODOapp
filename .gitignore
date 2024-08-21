@@ -1,4 +1,5 @@
 /backend/node_modules
 /backend/package-lock.json
+/backend/todos.json
 /frontend/todo-app/node_modules
 /frontend/todo-app/package-lock.json

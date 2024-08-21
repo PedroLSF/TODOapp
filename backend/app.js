@@ -1,4 +1,6 @@
 const express = require("express");
+const fs = require("fs");
+const path = require("path");
 const app = express();
 const cors = require("cors");
 
@@ -10,9 +12,23 @@ app.use(
 
 app.use(express.json());
 
-let todos = [];
+const TODOS_FILE = path.join(__dirname, "todos.json");
 
-// Rota para listar todos os TODOs
+const loadTodos = () => {
+  try {
+    const data = fs.readFileSync(TODOS_FILE, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    return [];
+  }
+};
+
+const saveTodos = (todos) => {
+  fs.writeFileSync(TODOS_FILE, JSON.stringify(todos, null, 2));
+};
+
+let todos = loadTodos();
+
 app.get("/api/todos", (req, res) => {
   res.json(todos);
 });
@@ -25,6 +41,7 @@ app.post("/api/todos", (req, res) => {
     completed: false,
   };
   todos.push(todo);
+  saveTodos(todos);
   res.status(201).json(todo);
 });
 
@@ -34,6 +51,7 @@ app.put("/api/todos/:id", (req, res) => {
   const todo = todos.find((t) => t.id === todoId);
   if (todo) {
     todo.completed = true;
+    saveTodos(todos);
     res.json(todo);
   } else {
     res.status(404).send("TODO not found");
@@ -44,6 +62,7 @@ app.put("/api/todos/:id", (req, res) => {
 app.delete("/api/todos/:id", (req, res) => {
   const todoId = parseInt(req.params.id);
   todos = todos.filter((t) => t.id !== todoId);
+  saveTodos(todos);
   res.status(204).send();
 });
 
