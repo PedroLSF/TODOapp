@@ -13,6 +13,27 @@ O TODO app deve ter as seguintes funcionalidades:
 
 ## Branch da versão
 
-### Versão 3: Persistência numa API em Memória
+### Versão 5: Persistência no Redis
+- **Descrição**: Os dados serão armazenados em um banco de dados Redis. Esta versão introduz o uso de um sistema de cache persistente.
 
-- **Descrição**: Uma API será usada para armazenar os dados em memória. No entanto, os dados serão perdidos quando a API for reiniciada.
+## Como utilizar
+
+- **Instale as dependencias**:
+```
+npm install
+```
+
+- **Suba o container**:
+```
+docker-compose up -d
+```
+
+- **Inicie o frontend**:
+```
+npm start
+```
+
+Foto do Get no Redis:
+
+![image](https://github.com/user-attachments/assets/900d9b66-4536-45f4-90cd-32029d5306ff)
+
