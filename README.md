@@ -16,3 +16,10 @@ O TODO app deve ter as seguintes funcionalidades:
 ### Versão 2: Persistência no Navegador (Local Storage)
 
 - **Descrição**: Os dados serão armazenados no Local Storage do navegador, permitindo que eles sejam mantidos mesmo após a página ser atualizada.
+
+## Como utilizar
+
+- **Inicie o frontend**:
+```
+npm start
+```
